@@ -1,0 +1,30 @@
+{
+    "name": "XL Assets Icons Line",
+    "description": "Elegant rounded icon set",
+    "params": [
+        {
+            "name": "color",
+            "type": "string",
+            "example": "hex123456",
+            "description": "Changes color of stroke, uses word \"hex\" instead of \"#\", or vars, example: \"var(--neutral-0)\". Check for URL unsafe characters"
+        },
+        {
+            "name": "fill",
+            "type": "string",
+            "example": "hex123456",
+            "description": "Changes fill color, uses word \"hex\" instead of \"#\", or vars, example: \"var(--neutral-0)\". Check for URL unsafe characters"
+        },
+        {
+            "name": "size",
+            "type": "number",
+            "example": "128",
+            "description": "Changes width and height of svg element"
+        },
+        {
+            "name": "rotate",
+            "type": "90 | 180 | 270",
+            "example": "180",
+            "description": "Adds \"transform: rotate();\" style at certain angle"
+        }
+    ]
+}
