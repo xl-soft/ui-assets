@@ -1,7 +1,7 @@
-import express from "npm:express@latest";
+import express from "npm:express";
 import * as path from "https://deno.land/std@0.192.0/path/mod.ts";
 import __ from "https://deno.land/x/dirname@1.1.2/mod.ts";
-import {Request, Response} from 'npm:express@latest';
+import {Request, Response} from 'npm:express';
 import replaceAll from "./utils/replaceAll.ts";
 import { exists } from "https://deno.land/std@0.192.0/fs/mod.ts";
 const { __filename, __dirname } = __(import.meta);
