@@ -1,7 +1,8 @@
-import express from "npm:express";
+// @deno-types="npm:@types/express@4.17.15"
+import express from "https://esm.sh/express@4.18.2?target=denonext";
 import * as path from "https://deno.land/std@0.192.0/path/mod.ts";
 import __ from "https://deno.land/x/dirname@1.1.2/mod.ts";
-import {Request, Response} from 'npm:express';
+import {Request, Response} from "https://esm.sh/express@4.18.2?target=denonext";
 import replaceAll from "./utils/replaceAll.ts";
 import { exists } from "https://deno.land/std@0.192.0/fs/mod.ts";
 const { __filename, __dirname } = __(import.meta);
@@ -17,11 +18,11 @@ app.get("/icons/:pack/:category/:icon", async (req: Request , res: Response) => 
     const iconpath = path.join(iconspath, req.params.pack , req.params.category, `${req.params.icon}.svg`)
     let icon
     if (await exists(iconpath) === true) icon = Deno.readTextFileSync(iconpath); else { res.status(404); return }
-    icon = replaceAll(icon,` stroke="white"`, ` stroke="${replaceAll(color, 'hex', '#')}"`)
-    icon = replaceAll(icon,` fill="white"`, ` fill="${replaceAll(color, 'hex', '#')}"`)
+    icon = replaceAll(icon,` stroke="white"`, ` stroke="${replaceAll(String(color), 'hex', '#')}"`)
+    icon = replaceAll(icon,` fill="white"`, ` fill="${replaceAll(String(color), 'hex', '#')}"`)
     icon = replaceAll(icon,` width="50" height="50" `, ` width="${size}" height="${size}" `)
     icon = replaceAll(icon,`<svg `, `<svg style="transform: rotate(${rotate}deg)" `)
-    icon = replaceAll(icon,` fill="none" `, ` fill="${replaceAll(fill, 'hex', '#')}" `)
+    icon = replaceAll(icon,` fill="none" `, ` fill="${replaceAll(String(fill), 'hex', '#')}" `)
     
     res.setHeader('Content-Type', 'image/svg+xml');
     res.send(icon)
