@@ -74,5 +74,5 @@ app.get("/list/:pack", (req: Request , res: Response) => {
     res.json({...description, count: list.length, icons: list })
 });
 
-app.listen(8000)
+app.listen(8080)
 
