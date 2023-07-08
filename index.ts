@@ -49,7 +49,7 @@ app.get("/icons/:pack/:category/:icon", async (req: Request , res: Response) => 
     let icon
     
     const path = `./icons/${req.params.pack}/${req.params.category}/${req.params.icon}.svg`
-    if (await exists(path) === true) icon = Deno.readTextFileSync(path); else { res.status(404); return }
+    if (await exists(path) === true) icon = Deno.readTextFileSync(path); else icon = Deno.readTextFileSync('./404.svg')
     icon = replaceAll(icon,` stroke="white"`, ` stroke="${replaceAll(String(color), 'hex', '#')}"`)
     icon = replaceAll(icon,` fill="white"`, ` fill="${replaceAll(String(color), 'hex', '#')}"`)
     icon = replaceAll(icon,` width="50" height="50" `, ` width="${size}" height="${size}" `)
