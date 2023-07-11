@@ -6,6 +6,8 @@ import replaceAll from "./utils/replaceAll.ts";
 import { exists } from "https://deno.land/std@0.192.0/fs/mod.ts";
 const app = express();
 
+app.use("/static", express.static('./static'));
+
 app.get("/list", (req: Request , res: Response) => {
     const sets = []
     for (const id of Deno.readDirSync(`./icons`)) {
