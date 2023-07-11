@@ -6,8 +6,6 @@ import replaceAll from "./utils/replaceAll.ts";
 import { exists } from "https://deno.land/std@0.192.0/fs/mod.ts";
 const app = express();
 
-app.use("/static", express.static('./static'));
-
 app.get("/list", (req: Request , res: Response) => {
     const sets = []
     for (const id of Deno.readDirSync(`./icons`)) {
@@ -58,6 +56,15 @@ app.get("/icons/:pack/:category/:icon", async (req: Request , res: Response) => 
     icon = replaceAll(icon,`<svg `, `<svg style="transform: rotate(${rotate}deg)" `)
     icon = replaceAll(icon,` fill="none" `, ` fill="${replaceAll(String(fill), 'hex', '#')}" `)
     
+    res.setHeader('Content-Type', 'image/svg+xml');
+    res.send(icon)
+});
+
+
+app.get("/logo/:product/:name", async (req: Request , res: Response) => {
+    let icon
+    const path = `./logo/${req.params.product}/${req.params.name}.svg`
+    if (await exists(path) === true) icon = Deno.readTextFileSync(path); else icon = Deno.readTextFileSync('./404.svg')
     res.setHeader('Content-Type', 'image/svg+xml');
     res.send(icon)
 });
